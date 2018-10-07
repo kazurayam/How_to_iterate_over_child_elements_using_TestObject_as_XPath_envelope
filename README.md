@@ -36,7 +36,7 @@ I made 3 TestObjects:
 
 
 
-I made 1 TestCase [`TC1_iterate_over_Katalon_Discussions`](Scripts/TC1_iterate_over_Katalon_Discussions/Script1538870798504.groovy).
+I made 1 TestCase [`TC1_iterate_over_Katalon_Discussions`](Scripts/TC1_iterate_over_Katalon_Discussions/Script1538870798504.groovy). I would copy its portion and past it here:
 
 ```
 WebUI.navigateToUrl('https://forum.katalon.com/discussions')
