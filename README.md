@@ -16,9 +16,13 @@ I made this project in the hope to respond to a question raised by [a discussion
 2. start Katalon Studio, open the project
 3. open `Test Cases/TC1_iterate_over_Katalon_Discussions`, and run it with any browser
 
-## What it reads, what it writes
+## Input to the demo
 
-The TestCase opens https://forum.katalon.com/discussions, where you can find a list of 37 discussions. The TestCase iterates over the list discussions and print the titles. In the log you can see messages like this:
+The TestCase opens https://forum.katalon.com/discussions. There you will find a list of 37 discussions.
+
+## Output from the demo
+
+The TestCase iterates over the list of discussions and print the titles like this:
 
 ```
 10-07-2018 01:33:23 PM - [INFO]   - >>> 1: Visual Testing In Katalon Studio
@@ -28,13 +32,15 @@ The TestCase opens https://forum.katalon.com/discussions, where you can find a l
 
 ## How the demo works
 
-I made 3 TestObjects:
+### TestObjects made
+
 
 1. [`Page_Recent Discussions/Content.ul_class-Disscussions`](Object Repository/Page_Recent Discussions/Content.ul_class-Discussions.rs) with xpath `//div[@id='Content']/div/ul`
 2. [`Page_Recent Discussions/Content.(li_Item)`](Object Repository/Page_Recent Discussions/Content.(li_Item).rs) with xpath `//li`
 3. [`Page_Recent Discussions/Content.(a_Title)`](Object Repository/Page_Recent Discussions/Content.(a_Title).rs) with xpath `//div[contains(@class, 'Title')]/a`
 
 
+### TestCase made
 
 I made 1 TestCase [`TC1_iterate_over_Katalon_Discussions`](Scripts/TC1_iterate_over_Katalon_Discussions/Script1538870798504.groovy). I would copy its portion and past it here:
 
@@ -62,8 +68,34 @@ for (int pos = 1; pos <= rowCount; pos++) {
 }
 ```
 
-I want to you remark the following line:
+The following line is the core part of this script:
 ```
-String titleSelector = liSelector + "[position()=${pos}]" +
+String liSelector = ulSelector + findTestObject('Object Repository/Page_Recent Discussions/Content.(li_Item)').findPropertyValue('xpath')
+...
+for (int pos = 1; pos < rowCount; pos++) {
+    String titleSelector = liSelector + "[position()=${pos}]" +
     findTestObject('Object Repository/Page_Recent Discussions/Content.(a_Title)').findPropertyValue('xpath')
+    ...
+}
 ```
+
+Generated tilesSelectors will be as follows:
+- `//div[@id='Content']/div/ul//li[position()=1]//div[contains(@class, 'Title')]/a`
+- `//div[@id='Content']/div/ul//li[position()=2]//div[contains(@class, 'Title')]/a`
+- `//div[@id='Content']/div/ul//li[position()=3]//div[contains(@class, 'Title')]/a`
+- `//div[@id='Content']/div/ul//li[position()=4]//div[contains(@class, 'Title')]/a`
+...
+- `//div[@id='Content']/div/ul//li[position()=37]//div[contains(@class, 'Title')]/a`
+
+## Conclusion
+
+1. In the demo I used TestObject just an Envelope of XPath selector literal.
+1. TestObject is designed primarilly for the Katalon Studio features: "Record Web" and
+"Spy Web". But you can modify/refactor the generated TestObject manually, and it is highly recommended.
+1. I had no XPath literals hard-coded in the sample TestCase script. All the XPath literals
+are externalized into TestObjects. This would make code maintenance easier.
+It is good to have magical values centralized in the Object Repository is good.
+Scattering XPath literals all over the TestCase scripts is a nightmare.
+1. This sample shows you that you can introduce "searching for child elements" and
+"anything dynamic" by a bit tricky coding. Bigginer would not be able to understand this,
+but novice programmers would understand it quickly.
