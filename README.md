@@ -12,7 +12,7 @@ I made this project in the hope to respond to a question raised by [a discussion
 
 ## How to run the demo
 
-1. download the zip file of this project from [Releases]() page, unzip it.
+1. download the zip file of this project from the  [Releases](https://github.com/kazurayam/How_to_iterate_over_child_elements_using_TestObject_as_XPath_envelope/releases) page, unzip it.
 2. start Katalon Studio, open the project
 3. open `Test Cases/TC1_iterate_over_Katalon_Discussions`, and run it with any browser
 
