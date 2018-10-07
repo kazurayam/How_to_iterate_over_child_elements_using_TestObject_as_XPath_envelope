@@ -97,5 +97,7 @@ are externalized into TestObjects. This would make code maintenance easier.
 It is good to have magical values centralized in the Object Repository is good.
 Scattering XPath literals all over the TestCase scripts is a nightmare.
 1. This sample shows you that you can introduce "searching for child elements" and
-"anything dynamic" by a bit tricky coding. Bigginer would not be able to understand this,
-but novice programmers would understand it quickly.
+"anything dynamic" by a bit tricky coding. You construct a XPath literal dynamicaly for yourself using XPath fragments stored in TestObjects as Envelope.
+
+Beginners might not be able to use this approach, but well-trained programmers like you
+would easily see this idea.
