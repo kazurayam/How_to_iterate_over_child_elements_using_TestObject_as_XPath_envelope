@@ -1,27 +1,39 @@
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
-import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
-import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.model.FailureHandling as FailureHandling
-import com.kms.katalon.core.testcase.TestCase as TestCase
-import com.kms.katalon.core.testdata.TestData as TestData
-import com.kms.katalon.core.testobject.TestObject as TestObject
-import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import internal.GlobalVariable as GlobalVariable
+
 import org.openqa.selenium.By as By
 import org.openqa.selenium.WebDriver as WebDriver
+import com.kms.katalon.core.testobject.ConditionType
+import com.kms.katalon.core.testobject.TestObject
+
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
-import com.kms.katalon.core.testobject.ConditionType as ConditionType
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://forum.katalon.com/discussions')
+WebDriver driver = DriverFactory.getWebDriver()
 
-WebUI.verifyElementPresent(findTestObject('Page_Recent Discussions/Banner/h1_text-Welcome'), 10)
+// wait for page to load
+WebUI.verifyElementPresent(findTestObject('Page_Recent Discussions/Banner.h1_text-Welcome'), 10)
 
-WebUI.closeBrowser('')
+// read XPath fragments
+String ulSelector = findTestObject('Object Repository/Page_Recent Discussions/Content.ul_class-Discussions').findPropertyValue('xpath')
+String liSelector = ulSelector + findTestObject('Object Repository/Page_Recent Discussions/Content.(li_Item)').findPropertyValue('xpath')
+
+// obtain the number of Discussion rows
+int rowCount = driver.findElements(By.xpath(liSelector)).size()
+WebUI.comment(">>> rowCount=${rowCount}")
+
+// iterate over Discussions in the Forum
+for (int pos = 1; pos <= rowCount; pos++) {
+	// selector to the Title of each Discussion
+	String titleSelector = liSelector + "[position()=${pos}]" +
+		findTestObject('Object Repository/Page_Recent Discussions/Content.(a_Title)').findPropertyValue('xpath')
+	TestObject to = new TestObject().addProperty('xpath', ConditionType.EQUALS, titleSelector)
+	WebUI.verifyElementPresent(to, 1)
+	String title = WebUI.getText(to)
+	WebUI.comment(">>> ${pos}: ${title}")
+}
+
+WebUI.closeBrowser()
 

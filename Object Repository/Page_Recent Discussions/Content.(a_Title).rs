@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>rel.li_Item</name>
+   <name>Content.(a_Title)</name>
    <tag></tag>
-   <elementGuidId>a96e85f7-2e6b-4c7e-a1c2-a231f7f8530b</elementGuidId>
+   <elementGuidId>8135827e-6b39-44ff-8bf9-221b54889f01</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>
@@ -17,6 +17,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>//li</value>
+      <value>//div[contains(@class, 'Title')]/a</value>
    </webElementProperties>
 </WebElementEntity>

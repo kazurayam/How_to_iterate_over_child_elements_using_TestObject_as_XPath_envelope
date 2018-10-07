@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>Banner.h1_text-Welcome</name>
+   <tag></tag>
+   <elementGuidId>ff1a631d-dba6-455c-bcb6-6e7b9ad6edb7</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//div[contains(@class,'banner-forum')]//h1[contains(text(),'Welcome')]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//div[contains(@class,'banner-forum')]//h1[contains(text(),'Welcome')]</value>
+   </webElementProperties>
+</WebElementEntity>

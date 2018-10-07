@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>h1_text-Welcome</name>
+   <name>Content.ul_class-Discussions</name>
    <tag></tag>
-   <elementGuidId>ff1a631d-dba6-455c-bcb6-6e7b9ad6edb7</elementGuidId>
+   <elementGuidId>a1a393f6-c601-4906-a44d-2a15046860bb</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>
-         <value>//div[contains(@class,'banner-forum')]//h1[contains(text(),'Welcome')]</value>
+         <value>//div[@id='Content']/div/ul</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -17,6 +17,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>//div[contains(@class,'banner-forum')]//h1[contains(text(),'Welcome')]</value>
+      <value>//div[@id='Content']/div/ul</value>
    </webElementProperties>
 </WebElementEntity>
